@@ -91,23 +91,25 @@ function notTrespassing(row, col, shipSize, isVerticalShip) {
     return (isVerticalShip) ? (row + shipSize) < 21 : (col + shipSize) < 21;
 }
 
-function hitTheShip(row, col, navy) {
-    let gotIt = false;
-    loopForNavy:
-        for (let shipGroup in navy) {
-            for (let ship of navy[shipGroup].items) {
-                // console.log('['+row+','+col+'] in '+ship.body);
-                if (hasInterseption([[row, col]], ship.body)) {
-                    ship.crushed();
-                    gotIt = ship;
-                    //$scope.fieldElements[row][col]=ship.imageHtml;
-                    // $rootScope.userScore++;
-                    break loopForNavy;
-                }
-            }
-        }
-    return gotIt;
-}
+// function hitTheShip(row, col, navy) {
+//     let gotIt = false;
+//     loopForNavy:
+//         for (let shipGroup in navy) {
+//             for (let ship of navy[shipGroup].items) {
+//                 // console.log('['+row+','+col+'] in '+ship.body);
+//                 if (hasInterseption([[row, col]], ship.body) && ship.isAlive) {
+//                     console.log(ship.isAlive+'before crush and ');
+//                     ship.crushed();
+//                     console.log(ship.isAlive+' after crush.');
+//                     gotIt = ship;
+//                     //$scope.fieldElements[row][col]=ship.imageHtml;
+//                     // $rootScope.userScore++;
+//                     break loopForNavy;
+//                 }
+//             }
+//         }
+//     return gotIt;
+// }
 
 
 (function () {
@@ -159,6 +161,7 @@ function hitTheShip(row, col, navy) {
                         $rootScope.compNavy[currentShip.size].items.push(currentShip);
                         shipSizes.shift();
                         --compShipsnumber;
+                        $scope.fieldElements[row][col]=currentShip.imageHtml;//for testing
                     }
                 }
             }
@@ -166,17 +169,29 @@ function hitTheShip(row, col, navy) {
 
 
         $scope.clickAction = function (row, col) {
-            let crushedShip = hitTheShip(row, col, $rootScope.compNavy);
-            if (crushedShip) {
-                $scope.fieldElements[crushedShip.base[0]][crushedShip.base[1]] = crushedShip.imageHtml;
-                $rootScope.userScore += crushedShip.size;
-                if ($rootScope.userScore == 26) {
-                    alert('Congratulations!!! You win!!! Press "Ok" to play again.');
-                    location.reload();
+            let gotIt = false;
+            loopForCompNavy:
+                for (let shipGroup in $rootScope.compNavy) {
+                    for (let ship of $rootScope.compNavy[shipGroup].items) {
+                        if (hasInterseption([[row, col]], ship.body)) {
+                            console.log('has user interseption ');
+                            gotIt=true;
+                            if(ship.isAlive){
+                                $rootScope.userScore += ship.size;
+                                ship.crushed();
+                                $scope.fieldElements[ship.base[0]][ship.base[1]] = ship.imageHtml;
+                                if ($rootScope.userScore == 26) {
+                                    alert('Congratulations!!! You win!!! Press "Ok" to play again.');
+                                    location.reload();
+                                }
+                            }
+                            break loopForCompNavy;
+                        }
+                    }
                 }
-            } else {
-                $scope.fieldElements[row][col] = $rootScope.shotHTML;
-            }
+                if(!gotIt){
+                    $scope.fieldElements[row][col] = $rootScope.shotHTML;
+                }
             $rootScope.$broadcast('shotIsDone');
         }
     }]);
@@ -235,15 +250,27 @@ function hitTheShip(row, col, navy) {
         $scope.$on('shotIsDone', function (event, data) {
             let row = parseInt(Math.random() * 20);
             let col = parseInt(Math.random() * 20);
-            let crushedShip = hitTheShip(row, col, $rootScope.userNavy);
-            if (crushedShip) {
-                $scope.fieldElements[crushedShip.base[0]][crushedShip.base[1]] = crushedShip.imageHtml;
-                $rootScope.computerScore += crushedShip.size;
-                if ($rootScope.computerScore == 26) {
-                    alert('Sorry, but computer wins!!! Press "Ok" to play again.');
-                    location.reload();
+
+            let gotIt = false;
+            loopForUserNavy:
+                for (let shipGroup in $rootScope.userNavy) {
+                    for (let ship of $rootScope.userNavy[shipGroup].items) {
+                        if (hasInterseption([[row, col]], ship.body)) {
+                            gotIt=true;
+                            if(ship.isAlive){
+                                ship.crushed();
+                                $rootScope.computerScore += ship.size;
+                                $scope.fieldElements[ship.base[0]][ship.base[1]] = ship.imageHtml;
+                                if ($rootScope.computerScore == 26) {
+                                    alert('Sorry, but computer wins!!! Press "Ok" to play again.');
+                                    location.reload();
+                                }
+                            }
+                            break loopForUserNavy;
+                        }
+                    }
                 }
-            } else {
+            if(!gotIt){
                 $scope.fieldElements[row][col] = $rootScope.shotHTML;
             }
         });
