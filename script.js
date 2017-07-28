@@ -91,27 +91,6 @@ function notTrespassing(row, col, shipSize, isVerticalShip) {
     return (isVerticalShip) ? (row + shipSize) < 21 : (col + shipSize) < 21;
 }
 
-// function hitTheShip(row, col, navy) {
-//     let gotIt = false;
-//     loopForNavy:
-//         for (let shipGroup in navy) {
-//             for (let ship of navy[shipGroup].items) {
-//                 // console.log('['+row+','+col+'] in '+ship.body);
-//                 if (hasInterseption([[row, col]], ship.body) && ship.isAlive) {
-//                     console.log(ship.isAlive+'before crush and ');
-//                     ship.crushed();
-//                     console.log(ship.isAlive+' after crush.');
-//                     gotIt = ship;
-//                     //$scope.fieldElements[row][col]=ship.imageHtml;
-//                     // $rootScope.userScore++;
-//                     break loopForNavy;
-//                 }
-//             }
-//         }
-//     return gotIt;
-// }
-
-
 (function () {
     let app = angular.module('seaBattle', ['ngSanitize', 'directs']);
 
@@ -161,7 +140,7 @@ function notTrespassing(row, col, shipSize, isVerticalShip) {
                         $rootScope.compNavy[currentShip.size].items.push(currentShip);
                         shipSizes.shift();
                         --compShipsnumber;
-                        $scope.fieldElements[row][col]=currentShip.imageHtml;//for testing
+                        // $scope.fieldElements[row][col]=currentShip.imageHtml;//for testing
                     }
                 }
             }
