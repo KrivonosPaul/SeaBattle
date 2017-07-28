@@ -1,0 +1,128 @@
+body{
+    margin:0;
+    padding:8px;
+    background-color: #615d61;
+    color: #3ac1ff;
+}
+header, footer{
+    clear:both;
+    height:90px;
+    text-align: center;
+    border:1px solid #3ac1ff;
+    border-radius: 5px;
+    background-color:rgba(58, 193, 255, 0.2);
+}
+main{
+    height:402px;
+    margin:10px auto;
+    width:810px;
+}
+h1, h2{
+    margin-bottom: 0;
+}
+h2{
+    margin-top:10px;
+}
+header p, footer p{
+    margin:0;
+}
+/*.center{*/
+    /*width:810px;*/
+    /*margin: 0 auto;*/
+/*}*/
+.userPanel{
+    text-align:center;
+    float:left;
+    width:200px;
+    height:400px;
+    border:1px solid #3ac1ff;
+    background-color:rgba(58, 193, 255, 0.2);
+}
+
+button:hover, .shipContainer>li:hover{
+    cursor:pointer;
+    color: #348bc1;
+}
+.field{
+    float:left;
+    width:400px;
+    height:400px;
+    border:1px solid #3ac1ff;
+}
+.right{
+    float:right;
+}
+.left{
+    float:left;
+}
+.cell{
+    float:left;
+    width:18px;
+    height:18px;
+    border:1px solid #3ac1ff;
+}
+button{
+    background: none;
+    border:none;
+    color:#3ac1ff;
+}
+.previewField{
+    background-color: #497a85;
+    height:200px;
+    width:200px;
+    border-top:1px solid #3ac1ff;
+    border-bottom:1px solid #3ac1ff;
+}
+.rotated{
+    transform-origin:10px 10px;
+    transform: rotate(90deg);
+}
+img{
+    position:absolute;
+}
+.previewField>img{
+    position:static;
+}
+
+/*
+
+
+main{
+    margin:5px auto;
+    height:474px;
+    width:474px;
+}
+.square{
+    float:left;
+    text-align:center;
+    border:1px solid #3ac1ff;
+    width:150px;
+    height:150px;
+    margin:3px;
+    background-color:rgba(58, 193, 255, 0.2);
+}
+.square:hover, .gamestarter:hover{
+    cursor: pointer;
+}
+.sign{
+    font-size:100px;
+}
+.checked{
+    color: #ff733c;
+}
+.infoblock{
+    position:absolute;
+    height:474px;
+    width:474px;
+    background-color: #9200ff;
+    border:1px solid #3ac1ff;
+    text-align: center;
+}
+.infoblock>div{
+    position:relative;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:25px;
+}
+
+*/

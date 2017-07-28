@@ -1,0 +1,29 @@
+<!--<div class="center" >-->
+    <div class="userPanel" ng-show="beforeRun">
+        <h3>Click to choose the ship:</h3>
+        <ul class="shipContainer">
+            <li ng-click="tookShip(10)">10-size ships -- {{1-userNavy['10'].items.length}}</li>
+            <li ng-click="tookShip(5)">5-size ships -- {{2-userNavy['5'].items.length}}</li>
+            <li ng-click="tookShip(2)">2-size ships -- {{3-userNavy['2'].items.length}}</li>
+        </ul>
+
+        <!--<button ng-click="startGame()">>>START<<</button>-->
+    </div>
+    <user-field class="left"></user-field>
+    <div class="userPanel" ng-show="beforeRun">
+        <h3>Preview:</h3>
+        <div class="previewField" ng-bind-html="currentShip.imageHtml">
+            <!--{{currentShip.imageHtml}}-->
+            <!--<img src="{{currentShip.imgUrl}}" ng-class="{rotated : currentShip.isVertical}">-->
+            <!--{{currentShip.imageHTML}}-->
+        </div>
+        <div>
+            <button ng-click="rotateCurrent()">>>ROTATE<<</button>
+            <!--<br><button ng-click="putCurrent()">>>PUT IT ON THE FIELD<<</button>-->
+            <p>
+                Click on the cell of the field to place this ship on it. Notice, that base
+                for horizontal ships is left side and for vertical it is top.
+            </p>
+        </div>
+    </div>
+<!--</div>-->

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sea Battle</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script  src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body ng-app="seaBattle" ng-cloak>
+<header>
+    <h1>Sea Battle</h1>
+</header>
+<main>
+    <user-field-on-start  ng-controller="userFieldController"></user-field-on-start>
+    <!--<div ng-hide="beforeRun">-->
+        <!--<user-field class="left" ng-controller="userFieldController"></user-field>-->
+    <!--<div ng-hide="beforeRun">-->
+        <!--<button bg-click="">-->
+    <!--</div>-->
+    <comp-field class="right" ng-hide="beforeRun" ng-controller="compFieldController"></comp-field>
+    <!--</div>-->
+</main>
+<footer>
+    <scores ng-hide="beforeRun"></scores>
+</footer>
+
+<script src="directives.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
