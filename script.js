@@ -179,7 +179,7 @@ function hitTheShip(row,col,navy){
                     if(!notsuitable) {
                         $rootScope.compNavy[currentShip.size].items.push(currentShip);
                         shipSizes.shift();
-                        $scope.fieldElements[row][col] = currentShip.imageHtml;
+                        // $scope.fieldElements[row][col] = currentShip.imageHtml;
                         --compShipsnumber;
                     }
                 }
@@ -201,9 +201,8 @@ function hitTheShip(row,col,navy){
                 }
             }else{
                 $scope.fieldElements[row][col]=$rootScope.shotHTML;
-                // $scope.$emit('shotIsDone',0);
-                $rootScope.$broadcast('shotIsDone');
             }
+            $rootScope.$broadcast('shotIsDone');
         }
     }]);
 
